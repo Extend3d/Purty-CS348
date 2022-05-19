@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>  
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Purty - {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div id='HeaderAndBodyWrapper'>
+            {% block header %}
+                <div id='Header'>
+                    <div id='Logo'>
+                        <a href="{{ url_for('parties') }}">
+                            <img id="LogoImage" src="{{ url_for('static', filename='logo.svg.png') }}">
+                        </a>
+                        <span id="LogoSubText">
+                            {{ self.title() }}
+                        </span>
+                     </div>
+                    <div class='HeaderItem'>
+                        <a href="{{ url_for('parties') }}">Parties</a>
+                    </div>
+                    <div class='HeaderItem'>
+                        <a href="{{ url_for('index') }}">Users</a>
+                    </div>
+                    {% if 'user_id' in session %}
+                    <div class='HeaderItem'>
+                        <a href="{{ url_for('invites') }}">Invites ({{ get_inv_cnt(session['user_id']) }})</a>
+                    </div>	
+
+                    <div class='HeaderItem'>
+                        <a href="{{ url_for('requests') }}">Your Requests ({{ get_req_cnt(session['user_id']) }})</a>
+                    </div>	
+
+                        
+
+                    <div class='HeaderItem'>
+                        <a href="{{ url_for('handle_requests') }}">Handle Requests ({{ get_req_hand_cnt(session['user_id']) }})</a>
+                    </div>	
+                        
+                    {% endif %}			
+                    <div class='HeaderItem'>
+                        {% if 'user_id' in session %}
+                            Welcome, {{ get_user_name(session['user_id']) }}!<br>
+                            <a href="{{ url_for('logout') }}">Logout</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}">Login</a>
+                        {% endif %}
+                    </div>
+					<!-- <form method="post" action="{{ url_for('empty') }}">
+						<div>
+							<label for="name">Table:</label>
+							<input type="text" name="table" value="{{ request.form['table'] }}"></input>
+						</div> 
+						<div>
+							<button type="submit">Clear</button>
+						</div>
+					</form> 					 -->
+                </div>
+                
+            {% endblock %}
+            
+            
+            <div id='Body'>
+            {% block content %}
+            
+            {% endblock %}
+            </div>
+        </div>
+        
+        {% block footer %}
+            <div id='Footer'>
+                <div id='FooterContent'>
+                    <p>
+                        CS384 Project by Arda Gurer(agurer@purdue.edu), Daniel Karagory(dkarago@purdue.edu), John Schmidl(jschmidl@purdue.edu), and Joey Gossett(jgosset@purdue.edu)
+                    </p>
+                    <p>
+                        <a href='https://github.com/DanielBatteryStapler/cs348project'>Code is on Github</a>
+                    </p>
+                </div>
+            </div>
+        {% endblock %}
+    </body>
+    
+</html>

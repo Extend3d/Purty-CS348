@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} User Info {% endblock %}
+{% block content %}
+<h1>User</h1>
+{% if session['user_id'] == user['user_id'] %}
+    <a href="{{ url_for('edit_user', user_id=user['user_id']) }}">
+        Edit
+    </a>
+{% endif %}
+<div class='user'>
+	<div class='name'>
+		{{ user['name'] }}
+	</div>
+	<div class='email'>
+		{{ user['email'] }}
+	</div>
+	<div class='age'>
+		{{ user['age'] }}
+	</div>
+</div>
+
+{% endblock %}

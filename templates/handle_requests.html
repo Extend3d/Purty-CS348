@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Handle Requests {% endblock %}
+{% block content %}
+    <h1>Handle Requests ({{ req_cnt }})</h1>
+    
+    {% for data in page_data %}
+        
+		<div class="invite">
+		    <div class="header">
+                <a href='{{ url_for('user', user_id=data[2]['user_id']) }}'>{{ data[2]['name'] }}</a>
+                requested an invite to
+                <a href='{{ url_for('party', party_id=data[0]['party_id']) }}'>{{ data[0]['name'] }}</a>
+		    </div>
+		    <div class="description">
+		        Requested on {{ data[1]['request_date'] }} <br>
+		        Party Time: {{ data[0]['time'] }} <br>
+		        Party Date: {{ data[0]['date'] }} <br>
+		    </div>
+		    <div class="choice">
+                {% if data[1]['answer'] == 1 %}
+			        <img class="choiceImage" src="{{ url_for('static', filename='accepted.svg.png') }}">
+                {% elif data[1]['answer'] == 0 %}
+			        <img class="choiceImage" src="{{ url_for('static', filename='rejected.svg.png') }}">
+                {% else %}
+                    <form method="post" action="{{ url_for('h_accept', user_id=data[1]['user_id']) }}">
+                        <button type="submit" value="{{ data[0]['party_id']  }}" name="party_id">
+			                <img class="choiceImage" src="{{ url_for('static', filename='accepted.svg.png') }}">
+                        </button>
+                    </form> 		
+                    <form method="post" action="{{ url_for('h_reject', user_id=data[1]['user_id']) }}">
+                        <button type="submit" value="{{ data[0]['party_id']  }}" name="party_id">
+			                <img class="choiceImage" src="{{ url_for('static', filename='rejected.svg.png') }}">
+                        </button>
+                    </form> 
+                {% endif %}
+            </div>
+         </div>
+    {% endfor %}
+{% endblock %}

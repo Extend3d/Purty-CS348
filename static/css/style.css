@@ -1,0 +1,326 @@
+
+:root {
+    --pageContentWidth: 60rem;
+    
+    --headerColor: #45bad1;
+    --headerColorContrast: white;
+}
+
+h1 {
+    border: 2px #eee solid;
+    color: var(--headerColor);
+    text-align: center;
+    padding: 10px;
+}
+
+body{
+    height: 100%;
+    
+    padding: 0;
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+html{
+    height: 100%;
+}
+
+a{
+    color: inherit;
+}
+
+#HeaderAndBodyWrapper{
+    display: grid;
+    grid-template-columns: 1fr var(--pageContentWidth) 1fr;
+    grid-template-areas: "header body .";
+    
+    flex: 1 0 auto;
+}
+
+#Header{
+    grid-area: header;
+    
+    padding-top: 0.2rem;
+    padding-bottom: 0.3rem;
+    
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    
+}
+
+#Header a{
+    color: var(--headerColorContrast);
+}
+
+.HeaderItem{
+    display: block;
+    
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    
+    margin: 0.5rem;
+    padding: 0.5rem;
+    
+}
+
+#Logo{
+    padding: 2rem;
+}
+
+#LogoImage{
+    width: 15rem;
+}
+
+#LogoSubText{
+    color: var(--headerColor);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#Body{
+    grid-area: body;
+    
+    width: var(--pageContentWidth);
+    padding: 3rem;
+}
+
+#Footer{
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    
+    flex-shrink: 0;
+}
+
+#FooterContent{
+    width: var(--pageContentWidth);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Footer a{
+    color: var(--headerColorContrast);
+}
+
+#content {
+    flex-direction: row;
+}
+
+
+.invite{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "header header"
+                         "description choice";
+    
+    width: 25rem;
+    padding: 0.5rem;
+}
+
+.invite .header{
+    grid-area: header;
+    
+    padding: 0.4rem;
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    
+    border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.invite .description{
+    grid-area: description;
+    
+    padding: 0.4rem;
+    
+    border-width: 0 0 0.1rem 0.1rem;
+    border-radius: 0 0 0 0.4rem;
+    border-style: solid;
+    border-color: var(--headerColor);
+}
+
+.invite .choice{
+    grid-area: choice;
+    
+    padding: 0.4rem;
+    text-align: center;
+    
+    border-width: 0 0.1rem 0.1rem 0;
+    border-radius: 0 0 0.4rem 0;
+    border-style: solid;
+    border-color: var(--headerColor);
+}
+
+.invite button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+.invite .choiceImage{
+}
+ 
+.invite button .choiceImage{
+    opacity: 0.5;
+    cursor: pointer
+}
+
+.invite button:hover .choiceImage{
+    opacity: 1;
+}
+
+
+.party{
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas: "name likes"
+                         "name coming"
+                         "description description"
+                         "details details"
+                         "users users";
+    
+    width: 25rem;
+    
+    border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+    border-style: solid;
+    border-color: var(--headerColor);
+
+    margin-bottom: 1rem;
+}
+
+.partyThumbnail{
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas: "name likes"
+                         "name coming"
+                         "description description"
+                         "details details";
+    
+    width: 25rem;
+    
+    border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+    border-style: solid;
+    border-color: var(--headerColor);
+}
+
+.party .name{
+    grid-area: name;
+    
+    padding: 0.4rem;
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.party .description{
+    grid-area: description;
+    
+    text-align: center;
+    
+    padding: 0.4rem;
+}
+
+.party .details{
+    grid-area: details;
+    
+    padding: 0.4rem;
+}
+
+.party .likes{
+    grid-area: likes;
+    
+    padding: 0.4rem;
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    
+    text-align: right;
+    
+    width: 7rem;
+}
+
+
+.party .coming{
+    grid-area: coming;
+    
+    padding: 0.4rem;
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    
+    text-align: right;
+    
+    width: 7rem;
+}
+
+.party .users{
+    grid-area: users;
+}
+
+.party .partyuser{
+    padding: 0.4rem;
+}
+
+.party .host{
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    
+    padding: 0.4rem;
+}
+
+
+.user{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "name name"
+                         "email age";
+    width: 30rem;
+    
+    border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+    border-style: solid;
+    border-color: var(--headerColor);
+
+    margin-bottom: 1rem;
+}
+
+
+.user .name{
+    grid-area: name;
+    
+    padding: 0.4rem;
+    background-color: var(--headerColor);
+    color: var(--headerColorContrast);
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.user .email{
+    grid-area: email;
+    
+    padding: 0.4rem;
+}
+
+.user .age{
+    grid-area: age;
+    
+    padding: 0.4rem;
+}
+
+
+
+
+
+
+
+

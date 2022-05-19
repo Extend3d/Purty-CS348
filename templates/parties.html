@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Parties {% endblock %}
+{% block content %}
+    <h1>List of Parties!</h1>
+    <a href="{{ url_for('new_party') }}">Host a New Party</a><br><br>
+    {% for party in parties %}
+        <div class='party partyThumbnail'>
+            <div class='name'>
+                <a href="{{ url_for('party', party_id=party['party_id']) }}">
+                    {{ party['name'] }}
+                </a>
+            </div>
+            <div class='likes'>
+                Likes: {{ party['likes_cnt'] }}
+            </div>
+            <div class='coming'>
+                Coming: {{ party['coming_cnt'] }}
+            </div>
+            <div class='description'>
+                {{ party['description'] }}
+            </div>
+            <div class='details'>
+                {{ party['date'] }}, {{ party['time'] }} at {{ party['address'] }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+

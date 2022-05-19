@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} New Party {% endblock %}
+{% block content %}
+    <h2>New Party</h2>
+    <form method="post" action="{{ url_for('new_party') }}">
+        <div>
+			<label> Co-hosts: </label>
+			{% for user in users %}
+                {% if user['user_id'] != session['user_id'] %}
+			        <input type="checkbox" name="hosts" value="{{ user['user_id'] }}">{{ user['name']  }} 
+                {% endif %}  
+			{% endfor %}			
+		</div> 
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{ request.form['name'] }}"></input>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="text" name="date" value="{{ request.form['date'] }}"></input>
+        </div>
+        <div>
+            <label for="time">Time:</label>
+            <input type="text" name="time" value="{{ request.form['time'] }}"></input>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" name="description" value="{{ request.form['description'] }}"></input>
+        </div>
+        <div>
+            <label for="location_id">Location:</label>
+            <input type="text" name="location_id" value="{{ request.form['location_id'] }}"></input>
+        </div>
+		<div>
+			<label> Check to invite: </label>
+			{% for user in users %}
+                {% if user['user_id'] != session['user_id'] %}
+			        <input type="checkbox" name="invites" value="{{ user['user_id'] }}">{{ user['name']  }} 
+                {% endif %}   
+			{% endfor %}			
+		</div> 
+        <div>
+            <button type="submit">Create</button>
+        </div>
+    </form> 
+{% endblock %}
